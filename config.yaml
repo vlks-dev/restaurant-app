@@ -1,4 +1,0 @@
-server:
-  level: debug
-  host: localhost
-  port: 8000

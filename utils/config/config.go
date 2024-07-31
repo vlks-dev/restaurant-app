@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"gopkg.in/yaml.v2"
 	"os"
 	"time"
@@ -27,17 +28,19 @@ type Config struct {
 	} `yaml:"database"`
 }
 
-func NewConfig(configPath string) (*Config, error) {
+func NewConfig(configPath string) *Config {
 	config := &Config{}
 	file, err := os.Open(configPath)
 	if err != nil {
-		return nil, err
+		fmt.Printf("Error opening config file: %s\n", err)
+		return nil
 	}
 	defer file.Close()
 
 	d := yaml.NewDecoder(file)
 	if err := d.Decode(config); err != nil {
-		return nil, err
+		fmt.Printf("Error decoding config file: %s\n", err)
+		return nil
 	}
-	return config, nil
+	return config
 }

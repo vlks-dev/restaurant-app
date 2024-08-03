@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"errors"
+	"github.com/cvckeboy/restaurant-app/db"
 	"github.com/cvckeboy/restaurant-app/utils/config"
 	"github.com/cvckeboy/restaurant-app/utils/logger"
 	"github.com/gin-gonic/gin"
@@ -19,9 +20,17 @@ func main() {
 	lg := slog.New(handler)
 	lg.Info("Config loaded, logger set", "program level", cfg.Server.Level)
 	engine := gin.Default()
+	ctx := context.TODO()
+
+	pool, err := db.NewPostgresConn(ctx, cfg, lg)
+	if err != nil {
+		lg.Error("Database connection pool set", "error", err)
+		return
+	}
+	defer pool.Close()
+	lg.Info("Database connection pool set", "pool", pool)
 
 	StartServer(cfg, lg, engine)
-
 }
 
 func StartServer(cfg *config.Config, logger2 *slog.Logger, engine *gin.Engine) {

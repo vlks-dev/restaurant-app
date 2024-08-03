@@ -9,12 +9,12 @@ import (
 	"time"
 )
 
-func NewPostgresConn(ctx context.Context, config config.Config, logger slog.Logger) (*pgxpool.Pool, error) {
+func NewPostgresConn(ctx context.Context, config *config.Config, logger *slog.Logger) (*pgxpool.Pool, error) {
 
 	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 	defer cancel()
-	url := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable", config.Database.Host, config.Database.Port,
-		config.Database.Username, config.Database.Password, config.Database.Database)
+	url := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable", config.Database.Username, config.Database.Password,
+		config.Database.Host, config.Database.Port, config.Database.Database)
 
 	configDb, err := pgxpool.ParseConfig(url)
 	if err != nil {

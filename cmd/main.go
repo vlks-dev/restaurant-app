@@ -1,10 +1,10 @@
-package main
+package cmd
 
 import (
 	"context"
 	"errors"
-	"github.com/cvckeboy/restaurant-app/db"
 	"github.com/cvckeboy/restaurant-app/utils/config"
+	"github.com/cvckeboy/restaurant-app/utils/db"
 	"github.com/cvckeboy/restaurant-app/utils/logger"
 	"github.com/gin-gonic/gin"
 	"log/slog"

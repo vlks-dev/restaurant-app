@@ -1,5 +1,23 @@
-### GET request to example server
-GET https://examples.http-client.intellij.net/get$END$
-    ?generated-in=GoLand
+
+### Send POST request with json body
+POST http://localhost:8000/api/v1/restaurant
+Content-Type: application/json
+
+{
+  "restaurant_name": "indisko",
+  "location": "resh",
+  "schedule": "2006-01-12 16:15:00"
+}
+
+
+###
+###
+POST http://localhost:8000/api/v1/administrator/register
+Content-Type: application/json
+
+{
+  "telephoneNumber": 1231,
+  "passerial": "test-pass-serial"
+}
 
 ###

@@ -4,8 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/cvckeboy/restaurant-app/utils/config"
 	"github.com/fatih/color"
+	"github.com/vlks-dev/restaurant-app/utils/config"
 
 	"io"
 	"log"

@@ -20,11 +20,22 @@ type Config struct {
 		} `yaml:"timeout"`
 	} `yaml:"server"`
 	Database struct {
-		Host     string `yaml:"host"`
-		Port     string `yaml:"port"`
-		Username string `yaml:"username"`
-		Password string `yaml:"password"`
-		Database string `yaml:"database"`
+		PostgreSQL struct {
+			Host     string `yaml:"host"`
+			Port     string `yaml:"port"`
+			Username string `yaml:"username"`
+			Password string `yaml:"password"`
+			Database string `yaml:"database"`
+		} `yaml:"postgresql"`
+		MongoDB struct {
+			Host     string        `yaml:"host"`
+			Port     string        `yaml:"port"`
+			Username string        `yaml:"username"`
+			Password string        `yaml:"password"`
+			Database string        `yaml:"database"`
+			MaxPool  int           `yaml:"max_pool"`
+			MaxIdle  time.Duration `yaml:"max_idle"`
+		}
 	} `yaml:"database"`
 }
 
